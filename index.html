@@ -7,15 +7,113 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
+    <link rel="stylesheet" href="app.css">
+    <title>Lawyer Lead Form</title>
 </head>
 <body>
-<h1>Hello, world!</h1>
+
+<div class="container" data-spy="scroll">
+    <h2 class="text-center"> Need a divorce lawyer?</h2>
+    <h2 class="text-center"> What kind of legal matter do you want?</h2>
+    <div class="p-3 mb-2 text-danger">Please make a minimum choice.</div>
+<!---bg-danger-->
+
+    <form data-spy="scroll">
+        <div class="form-group">
+            <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" id="divorce" name="divorce">
+                <label class="custom-control-label" for="divorce">Divorce</label>
+                <p>
+                    <input type="radio" class="custom-control-input" id="noDivorce" name="divorce">
+                    <label class="custom-control-label" for="noDivorce">Not a divorce</label>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-10">
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary my-4 my-sm-2 text-uppercase font-weight-bold">Next</button>
+            </div>
+        </div>
+
+
+        <div class="element">
+            <span class="step finish"></span>
+            <span class="step active"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label for="address">Your City: *</label>
+            <input type="text" class="form-control" id="address" placeholder="Enter a location">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Your Name: *</label>
+            <input type="text" class="form-control" id="name" >
+        </div>
+
+        <div class="form-group">
+            <label for="mail">E-mail: *</label>
+            <input type="text" class="form-control" id="mail" >
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Telephone: *</label>
+            <input type="text" class="form-control" id="phone" >
+        </div>
+
+
+        <div class="form-group">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="tos">
+                <label class="custom-control-label" for="tos">I accept these conditions *</label>
+            </div>
+        </div>
+
+
+
+        <div id="overflowTest">
+             </div>
+
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"></span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea"> «“By checking this box, you accept our general conditions of use, and that we collect the information necessary to process your request, and communicate it to, at most, 5 of the Lawyers of the Qredible site, who can contact you and you. help; including, and where applicable for the purposes of your query, personal data relating to your racial or ethnic origin, your political opinions, your religious or philosophical convictions, your trade union membership, your health, your life or your sexual orientation.”
+       </textarea>
+
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-10">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-light text-uppercase font-weight-bold" >Prev</button><button type="submit" class="btn btn-primary text-uppercase font-weight-bold" >Submit</button>
+            </div>
+        </div>
+
+
+
+
+        <div class="element">
+            <p></p>
+            <span class="step finish"></span>
+            <span class="step active"></span>
+        </div>
+
+
+    </form>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-
 
 </body>
 </html>
