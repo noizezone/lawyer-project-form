@@ -4,13 +4,9 @@
         const steps = Array.from(document.querySelectorAll(".step"));
         const dots = Array.from(document.querySelectorAll(".dot"));
 
-
         const nextBtn = document.querySelector("#next-btn");
         const prevBtn = document.querySelector("#prev-btn");
         const submitBtn = document.querySelector("#submit-btn");
-
-        const alerts = document.querySelectorAll(".alert");
-        const radios = document.querySelectorAll(".custom");
 
         nextBtn.addEventListener("click", function (event) {
             event.preventDefault();
@@ -81,37 +77,59 @@
         }
 
         function validateStep(activeStep, index) {
-            // TODO: Find alerts and remove them
-            for(let i of alerts){
-                alerts.classList.remove("alert alert-danger alert-dismissible fade show");
+            // Find alerts and remove them
+            const alerts = activeStep.querySelectorAll(".alert");
+
+            for (const index in alerts) {
+                if (alerts.hasOwnProperty(index)) {
+                    alerts[index].parentNode.removeChild(alerts[index]);
+                }
             }
 
-            // TODO: Remove is-invalid class from inputs
-            for(let i of radios){
-                radios.classList.remove("is-invalid");
+            // Remove is-invalid class from inputs
+            const invalidInputs = activeStep.querySelectorAll(".is-invalid");
+
+            for (const index in invalidInputs) {
+                if (invalidInputs.hasOwnProperty(index)) {
+                    invalidInputs[index].classList.remove("is-invalid");
+                }
             }
 
             if (0 === index) {
-                // validate radio buttons
+                // Validate step 1
+                const legalDomains = document.getElementsByName("legal_domain");
+                let isLegalDomainChecked = false;
 
-                // TODO: Set is-invalid class if something is invalid
-                if(!radios.value){
-                    radios.classList.add("is-invalid");
-                }else{
-                    radios.classList.remove("is-invalid");
+                for (const index in legalDomains) {
+                    if (legalDomains.hasOwnProperty(index) && legalDomains[index].checked) {
+                        isLegalDomainChecked = true;
+                        break;
+                    }
                 }
 
-               // const alert = createAlert('danger', 'Some alert text');
-                const alertType = "alert alert-type alert-dismissible fade show";
-                const alert = createAlert(alertType, 'Invalid Information');
+                if (isLegalDomainChecked) {
+                    return true;
+                }
 
-                // TODO: Find last activeStep h2 and append alert after that element
+                // Set is-invalid class if something is invalid
+                for (const index in legalDomains) {
+                    if (legalDomains.hasOwnProperty(index)) {
+                        legalDomains[index].classList.add("is-invalid");
+                    }
+                }
 
-                const lastH2 = document.querySelectorAll("h2");
-                lastH2[lastH2.length-1].appendChild(alert);
+                const alert = createAlert("danger", 'Invalid Information');
+
+                // Find last activeStep h2 and append alert after that element
+
+                const lastHeaders = activeStep.querySelectorAll("h2");
+                const lastHeader = lastHeaders[lastHeaders.length - 1];
+
+                lastHeader.parentNode.insertBefore(alert, lastHeader.nextSibling);
+
                 return false;
             }
-           // $().alert('close')
+
             if (1 === index) {
                 return true;
             }
@@ -120,20 +138,28 @@
         }
 
         function createAlert(type, text) {
-            // TODO: Create dom element and return it
-            const al = document.createElement("div");
-            al.className = type;
-            al.innerText = text;
-            const closeButton = document.createElement("button");
-            closeButton.className = "close";
-            closeButton.type = "button";
+            const alert = document.createElement("div");
+            alert.className = "alert alert-" + type + " alert-dismissible fade show";
 
-            // <div className="alert alert-type alert-dismissible fade show">
-            //     <span>Make choice</span>
-            //     <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-            //         <span aria-hidden="true">&times;</span>
-            //     </button>
-            // </div>
+            const alertSpan = document.createElement("span");
+            alertSpan.innerText = text;
+
+            alert.appendChild(alertSpan);
+
+            const button = document.createElement("button");
+            button.className = "close";
+            button.dataset.dismiss = "alert";
+            button.setAttribute("type", "button");
+            button.setAttribute("aria-label", "Close");
+
+            const buttonSpan = document.createElement("span");
+            buttonSpan.setAttribute("aria-hidden", "true");
+            buttonSpan.innerHTML = "&times;";
+
+            button.appendChild(buttonSpan);
+            alert.appendChild(button);
+
+            return alert;
         }
     });
 })();
