@@ -20,7 +20,6 @@
 
         submitBtn.addEventListener("click", function (event) {
             event.preventDefault();
-
             alert('submit form');
         });
 
@@ -118,7 +117,7 @@
                     }
                 }
 
-                const alert = createAlert("danger", 'Invalid Information');
+                const alert = createAlert("danger", 'Please select one legal matter');
 
                 // Find last activeStep h2 and append alert after that element
 
@@ -130,10 +129,104 @@
                 return false;
             }
 
+
+            //Validate Step 2
             if (1 === index) {
-                return true;
+                const personalInfo = document.getElementsByName("input_personal_info");
+
+                let isValidAll = [false, false, false, false, false];
+
+                for (let i = 0; i < personalInfo.length; i++) {
+                    if (personalInfo.hasOwnProperty(i)) {
+                        personalInfo[i].classList.add("is-invalid");
+                    }
+                }
+
+                if (personalInfo[0].value !== "") {
+                    personalInfo[0].classList.remove("is-invalid");
+                    personalInfo[0].classList.add("is-valid");
+                    isValidAll[0] = true;
+                }
+
+                if (personalInfo[1].value !== "") {
+                    personalInfo[1].classList.remove("is-invalid");
+                    personalInfo[1].classList.add("is-valid");
+                    isValidAll[1] = true;
+                }
+
+                if (personalInfo[2].value !== "") {
+
+                    function validateEmail(emailInput) {
+                        const regex = /\S+@\S+\.\S+/;
+                        return regex.test(emailInput);
+                    }
+
+                    personalInfo[2].classList.remove("is-invalid");
+                    personalInfo[2].classList.add("is-valid");
+                    isValidAll[2] = true;
+                }
+
+                if (personalInfo[3].value !== "") {
+                    personalInfo[3].classList.remove("is-invalid");
+                    personalInfo[3].classList.add("is-valid");
+                    isValidAll[3] = true;
+                }
+
+                if (document.getElementById('tos').checked) {
+                    personalInfo[4].classList.remove("is-invalid");
+                    personalInfo[4].classList.add("is-valid");
+                    isValidAll[4] = true;
+                }
+
+                const alert = createAlert("danger", 'Please fill up all required fields correctly and accept the conditions');
+                const lastHeaders = activeStep.querySelectorAll("h3");
+                const lastHeader = lastHeaders[lastHeaders.length - 1];
+                lastHeader.parentNode.insertBefore(alert, lastHeader.nextSibling);
+
+                for (let i = 0; i < isValidAll.length; i++) {
+                    if (isValidAll[index] === false) {
+                        return false;
+                    }
+                    if (isValidAll[isValidAll.length - 1] === true && i === isValidAll.length - 1) {
+                        return true;
+                    }
+                }
+
+                return false;
             }
 
+            //Validate step 3
+            if (2 === index) {
+                const paymentTypes = document.getElementsByName("payment");
+                let isPaymentTypeChecked = false;
+
+                for (const index in paymentTypes) {
+                    if (paymentTypes.hasOwnProperty(index) && paymentTypes[index].checked) {
+                        isPaymentTypeChecked = true;
+                        break;
+                    }
+                }
+
+                if (isPaymentTypeChecked) {
+                    return true;
+                }
+
+                for (const index in paymentTypes) {
+                    if (paymentTypes.hasOwnProperty(index)) {
+                        paymentTypes[index].classList.add("is-invalid");
+                    }
+                }
+
+                const alert = createAlert("danger", 'Please select your payment type');
+
+                const lastHeaders = activeStep.querySelectorAll("h3");
+                const lastHeader = lastHeaders[lastHeaders.length - 1];
+
+                lastHeader.parentNode.insertBefore(alert, lastHeader.nextSibling);
+
+
+                return false;
+            }
             return false;
         }
 
@@ -163,3 +256,12 @@
         }
     });
 })();
+
+function initAutocomplete() {
+    let autocomplete = new google.maps.places.Autocomplete(document.getElementById('geomap'), {types: ['geocode']});
+}
+
+
+
+
+

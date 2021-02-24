@@ -36,50 +36,30 @@
             </div>
         </div>
         <div class="step step-2">
-            <h2 class="text-left"> How do you want to pay?</h2>
-            <div class="alert alert-danger alert-dismissible" style="display: none;">
-                <span>Make choice</span>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            <h3 class="text-left"></h3>
             <div class="form-group">
-                <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="cash" name="cash" required>
-                    <label class="custom-control-label" for="cash">Cash</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="creditCard" name="creditCard" required>
-                    <label class="custom-control-label" for="creditCard">Credit Card</label>
-                </div>
-            </div>
-        </div>
-        <div class="step step-3">
-            <div class="form-group">
-                <label for="address">Your City: *</label>
-                <input type="text" class="form-control" id="address" placeholder="Enter a location" required>
-                <div class="valid-feedback"></div>
+                <label for="geomap">Your City: *</label>
+                <input type="text" class="form-control" id="geomap" placeholder="Enter a location" name="input_personal_info" required>
+
             </div>
             <div class="form-group">
                 <label for="name">Your Name: *</label>
-                <input type="text" class="form-control" id="name" required>
-                <div class="valid-feedback"></div>
+                <input type="text" class="form-control" id="name" name="input_personal_info" required>
+
             </div>
             <div class="form-group">
                 <label for="mail">E-mail: *</label>
-                <input type="text" class="form-control" id="mail" required>
+                <input type="text" class="form-control" id="mail" name="input_personal_info" required>
             </div>
             <div class="form-group">
                 <label for="phone">Telephone: *</label>
-                <input type="text" class="form-control" id="phone" required>
+                <input type="text" class="form-control" id="phone" name="input_personal_info" required>
             </div>
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="tos" required>
+                    <input type="checkbox" class="custom-control-input" id="tos" name="input_personal_info" required>
                     <label class="custom-control-label" for="tos">I accept these conditions *</label>
-                    <div class="invalid-feedback"></div>
+
                 </div>
             </div>
             <div class="form-group">
@@ -88,6 +68,21 @@
                         <span class="input-group-text"></span>
                     </div>
                     <textarea class="form-control" aria-label="With textarea"> «“By checking this box, you accept our general conditions of use, and that we collect the information necessary to process your request, and communicate it to, at most, 5 of the Lawyers of the Qredible site, who can contact you and you. help; including, and where applicable for the purposes of your query, personal data relating to your racial or ethnic origin, your political opinions, your religious or philosophical convictions, your trade union membership, your health, your life or your sexual orientation.”</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="step step-3">
+            <h3 class="text-left"> How do you want to pay?</h3>
+            <div class="form-group">
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="payment-type-cash" name="payment" required>
+                    <label class="custom-control-label" for="payment-type-cash">Cash</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" id="payment-type-card" name="payment" required>
+                    <label class="custom-control-label" for="payment-type-card">Credit Card</label>
                 </div>
             </div>
         </div>
@@ -115,5 +110,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script src="app.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk2-KIH0O3TPFDVj1kW-bl5o5Eld3KbpA&libraries=places&region=gb&language=en&callback=initAutocomplete" async defer></script>
 </body>
 </html>
